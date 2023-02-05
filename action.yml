@@ -1,0 +1,102 @@
+name: 'GitHub Repo Settings Sync Action'
+description: 'A GitHub Action to keep repository settings consistent across repos.'
+author: 'Chris Carini'
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  REPOSITORIES:
+    description: 'Github repositories to setup. Default will get all public repositories for your username'
+    required: false
+    default: 'ALL'
+  ALLOW_ISSUES:
+    description: 'Whether or not to allow issues on the repo'
+    required: false
+    default: 'true'
+  ALLOW_PROJECTS:
+    description: 'Whether or not to allow projects on the repo'
+    required: false
+    default: 'true'
+  ALLOW_WIKI:
+    description: 'Whether or not to allow wiki on the repo'
+    required: false
+    default: 'true'
+  SQUASH_MERGE:
+    description: 'Whether or not to allow squash merges on the repo'
+    required: false
+    default: 'true'
+  MERGE_COMMIT:
+    description: 'Whether or not to allow merge commits on the repo'
+    required: false
+    default: 'true'
+  REBASE_MERGE:
+    description: 'Whether or not to allow rebase merges on the repo'
+    required: false
+    default: 'true'
+  AUTO_MERGE:
+    description: 'Whether or not to allow auto-merge on the repo'
+    required: false
+    default: 'false'
+  DELETE_HEAD:
+    description: 'Whether or not to delete head branch after merges'
+    required: false
+    default: 'false'
+  BRANCH_PROTECTION_ENABLED:
+    description: 'Whether or not to enable branch protection'
+    required: false
+    default: 'UNCHANGED'
+  BRANCH_PROTECTION_NAME:
+    description: 'Branch name pattern for branch protection rule'
+    required: false
+    default: 'main'
+
+  BP_REQUIRED_STATUS_CHECKS:
+    description: 'Require status checks to pass before merging.'
+    required: true
+    default: 'null'
+  BP_REQUIRED_CONVO_RESOLUTION:
+    description: 'Requires all conversations on code to be resolved before a pull request can be merged into a branch that matches this rule. Set to false to disable.'
+    required: false
+    default: 'false'
+  BP_REQUIRED_SIGNATURES:
+    description: ''
+    required: false
+    default: 'false'
+  BP_REQUIRED_LINEAR_HISTORY:
+    description: 'Enforces a linear commit Git history, which prevents anyone from pushing merge commits to a branch. Set to true to enforce a linear commit history. Set to false to disable a linear commit Git history. Your repository must allow squash merging or rebase merging before you can enable a linear commit history.'
+    required: false
+    default: 'false'
+  BP_LOCK_BRANCH:
+    description: 'Whether to set the branch as read-only. If this is true, users will not be able to push to the branch.'
+    required: false
+    default: 'false'
+  BP_ENFORCE_ADMINS:
+    description: 'Enforce all configured restrictions for administrators. Set to true to enforce required status checks for repository administrators.'
+    required: true
+    default: 'false'
+  BP_ALLOW_FORCE_PUSHES:
+    description: 'Permits force pushes to the protected branch by anyone with write access to the repository. Set to true to allow force pushes. Set to false or null to block force pushes.'
+    required: false
+    default: 'false'
+  BP_ALLOW_DELETIONS:
+    description: 'Allows deletion of the protected branch by anyone with write access to the repository. Set to false to prevent deletion of the protected branch.'
+    required: false
+    default: 'false'
+  BP_BLOCK_CREATIONS:
+    description: 'If set to true, the restrictions branch protection settings which limits who can push will also block pushes which create new branches, unless the push is initiated by a user, team, or app which has the ability to push. Set to true to restrict new branch creation.'
+    required: false
+    default: 'false'
+  BP_ALLOW_FORK_SYNCING:
+    description: 'Whether users can pull changes from upstream when the branch is locked. Set to true to allow fork syncing. Set to false to prevent fork syncing.'
+    required: false
+    default: 'false'
+
+  TOKEN:
+    description: 'Personal access token with Repo privileges'
+    required: true
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

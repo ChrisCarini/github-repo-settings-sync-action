@@ -1,0 +1,55 @@
+{
+  "type": "commonjs",
+  "name": "github-repo-settings-sync-action",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A GitHub action to set assignee(s) or reviewer(s) when a PR has finished all checks.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write '**/*.ts'",
+    "format-check": "prettier --check '**/*.ts'",
+    "lint": "eslint src/**/*.ts",
+    "package": "ncc build src/main.ts --out dist --source-map --license licenses.txt",
+    "test": "jest --passWithNoTests",
+    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+  },
+  "engines": {
+    "node": ">= 16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisCarini/github-repo-settings-sync-action.git"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "setup"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/github": "^5.1.1",
+    "@actions/http-client": "^2.0.1",
+    "@octokit/rest": "^19.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "@types/semver": "^7.3.13",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vercel/ncc": "^0.34.0",
+    "eslint": "^8.28.0",
+    "eslint-plugin-github": "^4.4.1",
+    "eslint-plugin-jest": "^27.1.6",
+    "eslint-plugin-node": "^11.1.0",
+    "jest": "^28.1.3",
+    "js-yaml": "^4.1.0",
+    "prettier": "2.7.1",
+    "ts-jest": "^28.0.8",
+    "typescript": "^4.9.3"
+  },
+  "volta": {
+    "node": "16.16.0"
+  }
+}
